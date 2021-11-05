@@ -9,10 +9,12 @@ package tier3;
 import common.ITier3;
 import model.Account;
 import model.Adminstrator;
+import model.Clerk;
 
 import java.rmi.Naming;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
+import java.util.ArrayList;
 
 
 public class Tier3Controller
@@ -46,6 +48,10 @@ public class Tier3Controller
     public void updateAccount(Account account)
             throws RemoteException {
        dao.updateAccount(account);
+    }
+
+    public ArrayList<Clerk> getAllClerk(){
+        return dao.getAllClerk();
     }
 
 }

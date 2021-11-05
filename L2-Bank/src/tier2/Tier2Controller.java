@@ -10,11 +10,13 @@ import common.ITier2;
 import common.ITier3;
 import model.Account;
 import model.Adminstrator;
+import model.Clerk;
 
 
 import java.rmi.Naming;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
+import java.util.ArrayList;
 
 
 public class Tier2Controller
@@ -60,5 +62,13 @@ public class Tier2Controller
 	{
 		Adminstrator adminstrator = tier3.getAdminstrator(email,password);
 		return adminstrator != null;
+	}
+
+	public Clerk GetFirstAvailableClerk()
+	throws RemoteException
+	{
+		ArrayList<Clerk> clerks = tier3.getAllClerk();
+       for(Clerk clerk: clerks) if(clerk.isAvailable()) return clerk;
+	   return null;
 	}
 }

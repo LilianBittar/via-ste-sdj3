@@ -8,9 +8,11 @@ package common;
 
 import model.Account;
 import model.Adminstrator;
+import model.Clerk;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;
+import java.util.ArrayList;
 
 
 public interface ITier3
@@ -21,6 +23,8 @@ public interface ITier3
 	 Adminstrator getAdminstrator(String email, String password) throws RemoteException;
 	
 	 void updateAccount( Account account ) throws RemoteException;
+
+	 ArrayList<Clerk> getAllClerk() throws RemoteException;
 
 	 String T3_SERVICE_NAME = "rmi://localhost/T3";
 }

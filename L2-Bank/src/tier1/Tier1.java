@@ -24,6 +24,7 @@ public class Tier1
 			
 			while( tier2.withdraw( 4711, amount ) ) System.out.println( "Withdrawn: " + amount );
 			System.out.println("Login as administrator: " + tier2.login("sally@gmail.com","miaw"));
+			System.out.println("First available clerk: " + tier2.GetFirstAvailableClerk().getName());
 		} catch( Exception ex ) {
 			ex.printStackTrace();
 		}

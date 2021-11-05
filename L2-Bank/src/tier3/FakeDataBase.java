@@ -2,6 +2,7 @@ package tier3;
 
 import model.Account;
 import model.Adminstrator;
+import model.Clerk;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,11 +12,14 @@ public class FakeDataBase  implements DAO{
 
     private Account account4711 = new Account(4711, 5321.46);
     private List<Adminstrator> adminstrators = new ArrayList<>();
+    private ArrayList<Clerk> clerks = new ArrayList<>();
 
 
     public FakeDataBase(){
         adminstrators.add(new Adminstrator("sally@gmail.com","miaw"));
         adminstrators.add(new Adminstrator("nar@gmail.com","123"));
+        clerks.add(new Clerk("Dino", true));
+        clerks.add(new Clerk("Vino", false));
     }
 
 
@@ -37,4 +41,10 @@ public class FakeDataBase  implements DAO{
            for(Adminstrator adminstrator : adminstrators) if (adminstrator.getEmail().equals(email) && adminstrator.getPassword().equals(password)) return adminstrator;
            return null;
     }
+
+    @Override
+    public ArrayList<Clerk> getAllClerk() {
+        return clerks;
+    }
+
 }
