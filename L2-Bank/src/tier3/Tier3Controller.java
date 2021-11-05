@@ -54,4 +54,10 @@ public class Tier3Controller
         return dao.getAllClerk();
     }
 
+    @Override
+    public int getNumberOfCustomers() throws RemoteException {
+        return dao.getNumberOfCustomer();
+    }
+
+
 }

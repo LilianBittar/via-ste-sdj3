@@ -9,6 +9,7 @@ package common;
 import model.Account;
 import model.Adminstrator;
 import model.Clerk;
+import model.Customer;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;
@@ -25,6 +26,8 @@ public interface ITier3
 	 void updateAccount( Account account ) throws RemoteException;
 
 	 ArrayList<Clerk> getAllClerk() throws RemoteException;
+
+	 int getNumberOfCustomers() throws RemoteException;
 
 	 String T3_SERVICE_NAME = "rmi://localhost/T3";
 }

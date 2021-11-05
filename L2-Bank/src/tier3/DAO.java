@@ -13,4 +13,6 @@ public interface DAO {
     void updateAccount(Account account);
     Adminstrator getAdminstrator(String email, String password);
     ArrayList<Clerk> getAllClerk();
+    int getNumberOfCustomer();
+
 }

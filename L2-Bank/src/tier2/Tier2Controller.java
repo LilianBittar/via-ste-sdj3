@@ -5,14 +5,12 @@
 
 package tier2;
 
-
+import common.ClientRemoteInterface;
 import common.ITier2;
 import common.ITier3;
 import model.Account;
 import model.Adminstrator;
 import model.Clerk;
-
-
 import java.rmi.Naming;
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
@@ -24,15 +22,15 @@ public class Tier2Controller
 	implements ITier2
 {
 	private ITier3 tier3;
-	
-	
+	private ArrayList<ClientRemoteInterface> listeningClients;
+
 	public Tier2Controller()
 		throws RemoteException
 	{
 		try {
 			Naming.rebind( T2_SERVICE_NAME, this );
-			
 			tier3 = (ITier3) Naming.lookup(ITier3.T3_SERVICE_NAME );
+			listeningClients = new ArrayList<>();
 		} catch( Exception ex ) {
 			ex.printStackTrace();
 			System.exit( 1 );
@@ -52,7 +50,10 @@ public class Tier2Controller
 		else {
 			account.updateBalance( -amount );
 			tier3.updateAccount( account );
-			
+			for(ClientRemoteInterface client: listeningClients) if (client.getClientAccountNumber() == accountNumber) {
+				client.updateBalance((int) account.getBalance());
+				break;
+			}
 			return true;
 		}
 	}
@@ -71,4 +72,21 @@ public class Tier2Controller
        for(Clerk clerk: clerks) if(clerk.isAvailable()) return clerk;
 	   return null;
 	}
+
+	@Override
+	public int getNumberOfCustomers() throws RemoteException {
+		return tier3.getNumberOfCustomers();
+	}
+
+	@Override
+	public void subscribe(ClientRemoteInterface client) throws RemoteException {
+		 listeningClients.add(client);
+	}
+
+	@Override
+	public void desubscribe(ClientRemoteInterface client) throws RemoteException {
+		listeningClients.remove(client);
+	}
+
+
 }
