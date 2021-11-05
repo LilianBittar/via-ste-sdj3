@@ -5,10 +5,13 @@
 
 package tier3;
 
+import java.rmi.RemoteException;
+import java.rmi.registry.LocateRegistry;
+
 public class Tier3
 {
-	public static void main( String[] args )
-	{
+	public static void main( String[] args ) throws RemoteException {
+		LocateRegistry.createRegistry(1099);
 		try {
 			Tier3Controller controller = new Tier3Controller(new FakeDataBase());
 			

@@ -9,7 +9,7 @@ package tier2;
 import common.ITier2;
 import common.ITier3;
 import model.Account;
-
+import model.Adminstrator;
 
 
 import java.rmi.Naming;
@@ -53,5 +53,12 @@ public class Tier2Controller
 			
 			return true;
 		}
+	}
+
+	public boolean login(String email, String password)
+		throws RemoteException
+	{
+		Adminstrator adminstrator = tier3.getAdminstrator(email,password);
+		return adminstrator != null;
 	}
 }

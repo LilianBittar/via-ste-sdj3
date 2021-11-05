@@ -8,6 +8,7 @@ package tier3;
 
 import common.ITier3;
 import model.Account;
+import model.Adminstrator;
 
 import java.rmi.Naming;
 import java.rmi.RemoteException;
@@ -37,8 +38,14 @@ public class Tier3Controller
         return dao.getAccount(accountNumber);
     }
 
+    @Override
+    public Adminstrator getAdminstrator(String email, String password) throws RemoteException{
+        return dao.getAdminstrator(email,password);
+    }
+
     public void updateAccount(Account account)
             throws RemoteException {
        dao.updateAccount(account);
     }
+
 }

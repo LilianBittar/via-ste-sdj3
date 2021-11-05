@@ -14,7 +14,7 @@ public interface ITier2
 	extends Remote
 {
 	 boolean withdraw( int accountNumber, double amount ) throws RemoteException;
-	
+	boolean login( String email, String password) throws RemoteException;
 	
 	 String T2_SERVICE_NAME = "rmi://localhost/T2";
 }

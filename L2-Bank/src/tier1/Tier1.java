@@ -22,8 +22,8 @@ public class Tier1
 			
 			double amount = 853.17;
 			
-			while( tier2.withdraw( 4711, amount ) )
-				System.out.println( "Withdrawn: " + amount );
+			while( tier2.withdraw( 4711, amount ) ) System.out.println( "Withdrawn: " + amount );
+			System.out.println("Login as administrator: " + tier2.login("sally@gmail.com","miaw"));
 		} catch( Exception ex ) {
 			ex.printStackTrace();
 		}
